@@ -1,12 +1,12 @@
-import { useState } from 'react'
-
 import './App.css'
+import GoalList from './goal'
+import AddGoal from './AddGoal'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
+      <AddGoal/>
+      <GoalList/>
       
     </>
   )
