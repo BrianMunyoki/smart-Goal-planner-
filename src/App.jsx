@@ -1,15 +1,16 @@
 import './App.css'
-import GoalList from './goal'
-import AddGoal from './AddGoal'
+
+import AddNewGoal from './AddNewGoal'
+import CurrentGoals from './currentGoals';
 
 function App() {
   return (
-    <>
-      <AddGoal/>
-      <GoalList/>
-      
+    <>  
+    <CurrentGoals/>   
+    <AddNewGoal/> 
+     
     </>
   )
 }
 
-export default App
+export default App;
