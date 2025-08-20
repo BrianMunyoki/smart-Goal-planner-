@@ -1,11 +1,28 @@
-import { Box, VStack, Input, Button } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+
 function AddNewGoal(){
     const [goalName, setGoalName]=useState("");
     const [TargetAmount, setTargetAmount]=useState("");
     const[Category, setCategory]=useState("");
     const[Deadline,setDeadline]=useState("");
+    const[goals,setGoals]=useState([])
        const handleSubmit=(e)=>{
         e.preventDefault();
+        const newGoal={
+            name:goalName,
+            TargetAmount:TargetAmount,
+            SavedAmount:0
+        }
+       fetch("http://localhost:3001/goals",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(newGoal)
+       })
+       .then(res=>res.json())
+       .then((data)=>{
+        setGoals([...goals,data]);
+       })
+       .catch(err=>console.error(err));
     }
     return(
         <>
