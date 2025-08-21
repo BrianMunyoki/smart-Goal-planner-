@@ -1,5 +1,6 @@
 import AddNewGoal from "./AddNewGoal";
-function CurrentGoals({ name, TargetAmount, SavedAmount, Progress, Remaining, TimeLeft, Actions }) {
+import { useState,useEffect } from "react";
+function CurrentGoals() {
   const [goals, setGoals]=useState([])
   useEffect(()=>{
   fetch("http://localhost:3001/goals")
@@ -12,22 +13,26 @@ function CurrentGoals({ name, TargetAmount, SavedAmount, Progress, Remaining, Ti
         <tr>
           <th>Goal Name</th>
           <th>Target Amount</th>
-          <th>Saved</th>
-          <th>Progress</th>
-          <th>Remaining</th>
-          <th>Time Left</th>
-          <th>Actions</th>
+          <th>SavedAmount</th>
+          <th>Category</th>
+          <th>Deadline</th>
+          <th>CreatedAt</th>  
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         {goals.map((goal)=>(
         <tr key ={goal.id}>
           <td>{goal.name}</td>
-          <td>{goal.TargetAmount}</td>
-          <td>{goal.SavedAmount}</td>
-          <td>{goal.Progress}</td>
-          <td>{goal.Remaining}</td>
-          <td>{goal.Actions}</td>
+          <td>{goal.targetAmount}</td>
+          <td>{goal.savedAmount}</td>
+          <td>{goal.category}</td>
+          <td>{goal.deadline}</td>
+          <td>{goal.createdAt}</td>
+          <td>
+            <button onClick={()=>handleUpdated(goal.id)}>update Goal</button>
+            <button onclick={()=>handleDelete(goal.id)}>Delete Goal</button>
+          </td>
 
         </tr>
         ))}
