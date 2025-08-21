@@ -1,60 +1,93 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function AddNewGoal(){
-    const [goalName, setGoalName]=useState("");
-    const [TargetAmount, setTargetAmount]=useState("");
-    const[Category, setCategory]=useState("");
-    const[Deadline,setDeadline]=useState("");
-    const[goals,setGoals]=useState([])
-       const handleSubmit=(e)=>{
-        e.preventDefault();
-        const newGoal={
-            name:goalName,
-            TargetAmount:TargetAmount,
-            SavedAmount:0
-        }
-       fetch("http://localhost:3001/goals",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(newGoal)
-       })
-       .then(res=>res.json())
-       .then((data)=>{
-        setGoals([...goals,data]);
-       })
-       .catch(err=>console.error(err));
+function AddNewGoal() {
+  const [goalName, setGoalName] = useState("");
+  const [targetAmount, setTargetAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const [goals, setGoals] = useState([]);
+
+  const handleSubmit = (e) => {
+    
+
+    if (!goalName || !targetAmount || !category || !deadline) {
+      alert("Kindly fill in all fields!");
+      return;
     }
-    return(
-        <>
-        <form onSubmit={handleSubmit}>
+
+    const newGoal = {
+      name: goalName,
+      targetAmount: Number(targetAmount), // keep it numeric
+      savedAmount: 0,
+      category: category,
+      deadline: deadline,
+      createdAt: new Date().toISOString().split("T")[0]
+    };
+
+    fetch("http://localhost:3000/goals", {   // make sure this matches your json-server port
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newGoal)
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setGoals([...goals, data]);
+        
+        
+      })
+      .catch((err) => console.error("Error adding goal:", err));
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
         <div>
-        <label>
-            GoalName
-            <input type="text" placeholder="GoalName" value={goalName} onChange={(e)=>setGoalName(e.target.value)} />
-        </label><br/>
+          <label>
+            Goal Name
+            <input
+              type="text"
+              placeholder="Goal Name"
+              value={goalName}
+              onChange={(e) => setGoalName(e.target.value)}
+            />
+          </label>
         </div>
         <div>
-         <label>
+          <label>
             Target Amount
-            <input type="text" placeholder="TargetAmount" value={TargetAmount} onChange={(e)=>setTargetAmount(e.target.value)} />
-        </label><br/>
+            <input
+              type="number"
+              placeholder="Target Amount"
+              value={targetAmount}
+              onChange={(e) => setTargetAmount(e.target.value)}
+            />
+          </label>
         </div>
         <div>
-         <label>
+          <label>
             Category
-            <input type="text" placeholder="Category" value={Category} onChange={(e)=>setCategory(e.target.value)}/>
-        </label><br/>
+            <input
+              type="text"
+              placeholder="Category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+          </label>
         </div>
         <div>
-         <label>
+          <label>
             Deadline
-            <input type="text" placeholder="Category" value={Deadline} onChange={(e)=>setDeadline(e.target.value)}/><br/>
-        </label><br/>
-        <button type="submit">AddGoal</button><br/>
+            <input
+              type="date"
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
+            />
+          </label>
         </div>
-        </form>
-        </>
-    )
+        <button type="submit">Add Goal</button>
+      </form>
+    </>
+  );
 }
 
 export default AddNewGoal;
