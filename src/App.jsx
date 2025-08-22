@@ -6,9 +6,8 @@ import CurrentGoals from './currentGoals';
 function App() {
   return (
     <>  
-    <CurrentGoals/>   
-    <AddNewGoal/> 
-     
+    <h1>Smart Goal Planner</h1>
+    <CurrentGoals/>       
     </>
   )
 }

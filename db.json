@@ -3,7 +3,7 @@
     {
       "id": "1",
       "goalName": "Travel Fund - Japan",
-      "TargetAmount": 5000,
+      "TargetAmount": "10000",
       "savedAmount": 3700,
       "Category": "Travel",
       "deadline": "2025-12-31",
@@ -64,22 +64,23 @@
       "createdAt": "2024-07-01"
     },
     {
-      "id": "8",
-      "goalName": "New Phone",
-      "TargetAmount": 1200,
-      "savedAmount": 0,
-      "Category": "Electronics",
-      "deadline": "2025-01-31",
-      "createdAt": "2024-07-10"
+      "id": "9623",
+      "goalName": "Buy clothes",
+      "targetAmount": 30000,
+      "savedAmount": 7000,
+      "Category": "Luxury",
+      "deadline": "2025-08-28",
+      "createdAt": "2025-08-22",
+      "TargetAmount": 9000
     },
     {
-      "id": "70dc",
-      "name": "asdfasdfas",
-      "targetAmount": 666,
+      "id": "1049",
+      "goalName": "EAt KFC",
+      "TargetAmount": 30000,
       "savedAmount": 0,
-      "category": "dasfsaDFASF",
-      "deadline": "2025-08-23",
-      "createdAt": "2025-08-21"
+      "Category": "Luxury",
+      "deadline": "2025-08-24",
+      "createdAt": "2025-08-22"
     }
   ]
 }
