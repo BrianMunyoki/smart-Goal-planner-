@@ -1,8 +1,5 @@
 import './App.css'
-
-import AddNewGoal from './AddNewGoal'
-import CurrentGoals from './currentGoals';
-
+import CurrentGoals from "./CurrentGoals"
 function App() {
   return (
     <>  

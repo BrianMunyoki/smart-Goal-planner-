@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ProgressBar from "./ProgressBar";
 import AddNewGoal from "./AddNewGoal";
 
+
 function CurrentGoals() {
   const [goals, setGoals] = useState([]);
   const [editingGoal, setEditingGoal] = useState(null);
